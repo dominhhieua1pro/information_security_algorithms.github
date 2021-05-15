@@ -20,7 +20,7 @@ void algorithm(){
         b = (b * b + i) % number;
         a = (a * a + i) % number;
         d = gcd(abs(b - a), number);
-        printf("a = %7lld\tb = %7lld\tfactor = %4lld\n", a, b, d);
+        printf("a = %7lld\tb = %7lld\td = %4lld\n", a, b, d);
         if(d > 1 && d < number)
         	printf("\n%d = %d x %d", number, d, number/d);
         else if (d == number){
