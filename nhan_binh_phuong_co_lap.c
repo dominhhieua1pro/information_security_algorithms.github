@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int a, k[100], b, A, i, n, mu_k, t;
-
-void  convert_decimal_to_binary(int k[], int *t, int mu_k ){
+int  k[50], i, t;
+unsigned long long a, b, mu_k, A, n;
+void  convert_decimal_to_binary(int k[], int *t, unsigned long long mu_k ){
 	for(*t = 0; mu_k > 0; (*t)++){
 		if(mu_k % 2){
 			k[*t] = 1;
@@ -19,7 +19,7 @@ void algorithm(){
 	b = 1;
 	A = a;
 	if(mu_k == 0){
-		printf("%d^%d mod %d = %d", a, mu_k, n, b);
+		printf("%lld^%lld mod %lld = %lld", a, mu_k, n, b);
 		exit(0);
 	}
 	else {
@@ -29,13 +29,13 @@ void algorithm(){
 			A = A*A % n;
 			if(k[i] == 1)	b = (A*b) % n;
 		}
-		printf("\n%d^%d mod %d = %d", a, mu_k, n, b);
+		printf("\n%lld^%d mod %lld = %lld", a, mu_k, n, b);
 	}
 }
 int main(){
 	printf("Thuat toan nhan binh phuong co lap, tinh gia tri a^k mod n\n");
 	printf("\nEnter a, k, n: ");
-	scanf("%d%d%d", &a, &mu_k, &n);
+	scanf("%lld %lld %lld", &a, &mu_k, &n);
 	algorithm();
 	return 0;
 }
