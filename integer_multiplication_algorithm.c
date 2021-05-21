@@ -63,7 +63,7 @@ int main(){
 	printf("Integer multiplication algorithm!\n");
 	printf("\nEnter p, w: ");
 	scanf("%d %d", &p, &w);
-	printf("\nEnter a, b (0 <= a, b < p): ");
+	printf("\nEnter a, b (0 <= a,b < p): ");
 	scanf("%d %d", &a, &b);
 	integer_multiplication();
 	display();

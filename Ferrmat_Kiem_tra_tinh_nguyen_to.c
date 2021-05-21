@@ -29,8 +29,10 @@ int nhan_binh_phuong_co_lap(unsigned long long a, unsigned long long so_mu, unsi
 		return result_mod;
 	}
 }
-void checking_prime(){
+int checking_prime(int number, int t){
 	flag = 0;
+	if(number == 0 || number == 1)		return 0;
+	else if(number == 2 || number == 3)	  return 1;
 	for(i = 1; i <= t; i++){
 		tmp = 1;
 		while(tmp > 0){
@@ -40,19 +42,18 @@ void checking_prime(){
 		}
 		printf("\nt = %d\ta = %lld", i , a);
 		r = nhan_binh_phuong_co_lap(a, number-1, number);
-		if(r != 1){
-			printf("\n%lld la hop so!", number);
-			flag = 1;
-			break;
-		}
+		if(r != 1)	return 0;
 	}
-	if(!flag)
-		printf("\n\n=> %lld la so nguyen to\n", number);
+	return 1;
+}
+void display(){
+	if(checking_prime(number, t))	 printf("\n\n=> %lld la so nguyen to\n", number);
+	else 	printf("\n%lld la hop so!", number);
 }
 int main(){
 	printf("Thuat toan Fermat. Kiem tra tinh nguyen to cua so nguyen le number\n");
 	printf("\nEnter a odd integer, tham so an toan: ");
 	scanf("%lld %d", &number, &t);
-	checking_prime();
+	display();
 	return 0;
 }

@@ -6,8 +6,6 @@
 void sangEratosthenes(int number){
 	bool isPrime[MAX];
 	int i,j;
-//	isPrime[0] = false;
-//	isPrime[1] = false;
 	for(i = 2; i <= number; i++){
 		isPrime[i] = true;
 		}

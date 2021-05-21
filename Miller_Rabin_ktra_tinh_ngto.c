@@ -36,53 +36,41 @@ void split_n(unsigned long long *r){
 	}
 	printf("\ns = %lld, r = %lld voi %lld = 2^s * r\n", s, *r, number - 1);
 }
-void algorithm(){
+int algorithm(int number){
 	flag = 0;
 	r = number - 1;
+	if(r == 1 || r == 2) 	return 1;
+	else if(r == 3 || r == -1 || r == 0)	  return 0;
 	split_n(&r);
 	for(i = 1; i <= t; i++){
 		tmp = 1;
 		while(tmp > 0){
 			a = rand();
-			if(a >= 2 && a <= number-2)
+			if(a >= 2 && a <= number - 2)
 			 	tmp = 0;	
 		}
-		printf("\nco so a = %lld", a);
+		printf("\nt = %d\ta = %lld", i, a);
 		y = nhan_binh_phuong_co_lap(a, r, number);
 		if(y != 1 && y != number - 1){
 			j = 1;
 			while(j <= s - 1 && y != number - 1){
 				y = y*y % number;
-				if(y == 1) 	{
-					printf("\n=> %lld la hop so\n", number);
-					flag++;
-					break;
-				}
+				if(y == 1)	 return 0;
 				j++;
 			}
-			if(y != number - 1 && y != 1){
-				printf("\n=> %lld la hop so\n", number);
-				flag++;
-				break;
-			}
+			if(y != number - 1 && y != 1)	return 0;
 		}
 	}
-	if(flag == 0){
-		printf("\n\n=> %lld la so nguyen to\n", number);
-	}
+	return 1;
+}
+void display(){
+	if(algorithm(number))	printf("\n\n%lld la so nguyen to\n", number);
+	else	printf("\n%lld la hop so\n", number);
 }
 int main(){
 	printf("Thuat toan Miller - Rabin. Kiem tra tinh nguyen to cua so nguyen le number\n");
 	printf("\nEnter a odd integer, tham so an toan: ");
 	scanf("%lld %d", &number, &t);
-	algorithm();
+	display();
 	return 0;
 }
-	
-	
-	
-				
-			
-		
-
-
