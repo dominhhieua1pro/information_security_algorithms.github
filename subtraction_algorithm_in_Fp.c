@@ -31,19 +31,12 @@ void subtraction(){
 		else	e = 0;
 	}	
 }
-int convert_array_to_integer(){
-	c = 0;
-	for(i = 0; i < t ; i++){
-		c += C[t-i-1] * pow(2,(t-i-1)*w);
-	}
-	return c;
-}
 void subtraction_algorithm(){
 	convert_integer_to_array(p, P, w, p);
 	if(e == 1){
 		e = 0;
 		for(i = 0; i < t; i++){
-			C[i] = C[i] - P[i] - e;
+			C[i] = C[i] + P[i] + e;
 			if(C[i] >= pow(2,w)){
 				e = 1;
 				C[i] = C[i] - ((int)(C[i] / pow(2,w)))*pow(2,w);
@@ -73,8 +66,4 @@ int main(){
 	subtraction_algorithm();
 	display();
 	return 0;
-//	2634067223 2835415104 2147483647 8
 }
-	
-	
-	
