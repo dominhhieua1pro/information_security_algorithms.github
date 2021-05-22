@@ -24,12 +24,12 @@ void algorithm(){
 	}
 	else {
 		convert_decimal_to_binary(k, &t, mu_k);
-		if(k[0] == 1)	b = a;	
+		if(k[0] == 1)	b = a;
 		for(i = 1; i < t; i++){
 			A = A*A % n;
 			if(k[i] == 1)	b = (A*b) % n;
 		}
-		printf("\n%lld^%d mod %lld = %lld", a, mu_k, n, b);
+		printf("\n%lld^%lld mod %lld = %lld", a, mu_k, n, b);
 	}
 }
 int main(){
