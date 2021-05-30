@@ -1,72 +1,53 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<math.h>
 #include<stdbool.h>
-#define MAX 1000
+#define MAX 1000000
 
-int number, delta, i, j, p, start_segment, end_segment, smallest_multiple_of_p;
-bool first_segment[MAX];
-void Sieve_of_Eratosthenes(int delta){
-	// Sang Eratosthenes voi segment dau tien
-	for(i = 2; i <= delta + 1; i++){
-		first_segment[i] = true;
+int number, delta, i, j, p, number_of_segments;
+bool isPrime[MAX];
+void Sieve_first_segment(int delta){
+	for(i = 2; i <= number; i++){
+		isPrime[i] = true;
 	}
-	p = 2;
-    while (p <= (int)(sqrt(delta + 1))){
-    	if (first_segment[p]){
-            for(i = p*p; i <= delta + 1; i = i + p){
-            	first_segment[i] = false;
-            }
-        p++;
-        }
-    }
-    printf("\n");
-	for(i = 2; i <= delta + 1; i++){
-		if(first_segment[i]) {
-		printf("%d ", i);
-		}	
+	for(i = 2; i <= sqrt(delta + 1) ; i++){
+		if(isPrime[i]){
+			for(j = i*i ; j <= delta + 1; j += i){
+				isPrime[j] = false;
+			}
+		}
 	}
-	printf("\t is primes in [%d, %d)\n", 2, delta + 2);
 }
 void Segmented_Eratosthenes(int number){
-	delta = (int)(sqrt(number));	//minh chon delta = phan nguyen cua can(number) 
-	Sieve_of_Eratosthenes(delta);
-	start_segment = delta + 2;	 // gia tri dau tien cua segment thu 2
-	end_segment = start_segment + delta; //segment = [start, end) not [start, end] nha
-	bool mark[delta];
-	while(start_segment <= number){
-		if((end_segment > number)){
-			end_segment = number + 1; // when last array is not enough delta elements
+	delta = (int)(sqrt(number));
+	Sieve_first_segment(delta);
+	number_of_segments = (int)((number - 2) / delta) + 1;
+	for(i = 1; i < number_of_segments; i++){
+        for(j = (i * delta) + 2; j <= ((i + 1) * delta) + 1 && j <= number ; j++){
+            for(p = 2; p <= sqrt(((i + 1) * delta) + 1) ; p++){
+                if(isPrime[p] == true){
+                    if(j % p == 0 && j != p){
+                        isPrime[j] = false;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+void display(){
+	for(i = 0; i < number_of_segments; i++){
+        for(j = (i * delta) + 2; j <= ((i + 1) * delta) + 1 && j <= number ; j++){
+			if(isPrime[j])	printf("%d ", j);
 		}
-		for(i = 0; i < (end_segment - start_segment); i++){	// tuc la mang mark co delta phan tu
-			mark[i] = true;
-		}
-		//duyet p tu 2 den sqrt(max_m) voi max m = end - 1 trong segment [start, end) 
-		for(p = 2; p <= sqrt(end_segment - 1); p++){
-			if(first_segment[p]){
-				smallest_multiple_of_p = (((int)(start_segment / p)) * p);// tim boi nho nhat cua p
-				if(smallest_multiple_of_p < start_segment)
-					smallest_multiple_of_p = smallest_multiple_of_p + p;
-				for(j = smallest_multiple_of_p; j < end_segment; j = j + p){
-					mark[j - start_segment] = false;	// dich chuyen ve he quy chieu mark[0,1,...,delta)
-				}
-			}
-		}
-		for(i = start_segment; i < end_segment; i++){
-			if(mark[i - start_segment]){	// print nhung index chua bi danh dau
-				printf("%d ", i);
-			}
-		}
-		printf("\t is primes in [%d, %d)\n", start_segment, end_segment);
-		start_segment = start_segment + delta;	//start cua segment tiep theo 
-		end_segment = end_segment + delta;		//end cua segment tiep theo
-	}	
+		printf("\t\tare prime numbers in [%d, %d]\n", (i * delta) + 2, ((i + 1) * delta + 1 < number) ? (i + 1) * delta + 1 : number);
+	}
 }
 int main(){
 	printf("Segmented sieve of Eratosthenes!\n\n");
 	printf("Enter a number: ");
 	scanf("%d", &number);
 	Segmented_Eratosthenes(number);
+	display();
 	return 0;
 }
-	
+
