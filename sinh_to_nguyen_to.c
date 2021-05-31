@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 #include<stdbool.h>
-#define MAX 50
+#define MAX 1000
 
 int k[MAX], arr[MAX], i, j, t, tmp, so_bit, flag, K, B, flag1;
 unsigned long long a, A, so_mu, y, s, result_mod, r, decimal;
@@ -25,7 +25,7 @@ int nhan_binh_phuong_co_lap(unsigned long long a, unsigned long long so_mu, unsi
 	if(so_mu == 0)	return y;
 	else {
 		convert_decimal_to_binary(k, &so_bit, so_mu);
-		if(k[0] == 1)	result_mod = a;	
+		if(k[0] == 1)	result_mod = a;
 		for(j = 1; j < so_bit; j++){
 			A = A*A % decimal;
 			if(k[j] == 1)	result_mod = (A * result_mod) % decimal;
@@ -51,7 +51,7 @@ int miller_rabin_algorithm(unsigned long long decimal, int t){
 		while(tmp > 0){
 			a = rand();
 			if(a >= 2 && a <= decimal-2)
-			 	tmp = 0;	
+			 	tmp = 0;
 		}
 		y = nhan_binh_phuong_co_lap(a, r, decimal);
 		if(y != 1 && y != decimal - 1){
@@ -73,7 +73,7 @@ void sinh_so_random(int arr[], unsigned long long *decimal){
 	*decimal = 0;
 	for(i = 0; i < K; i++){
 		*decimal += (arr[i] * pow(2,i));
-	}	
+	}
 }
 void sangEratosthenes(int B){
 	int i,j;
@@ -95,7 +95,7 @@ void sinh_so_prime(){
 		for(i = 2; i <= B; i++){
 			if(isPrime[i]){
 				if((decimal % i == 0) && (decimal != i)){
-					printf("\n%lld sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
+					printf("\n%20.I64u sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
 					flag1++;
 					break;
 				}
@@ -103,13 +103,13 @@ void sinh_so_prime(){
 		}
 		if(flag1 == 0){
 			if(miller_rabin_algorithm(decimal, t)){
-				printf("\n%lld sinh ngau nhien la so nguyen to\n", decimal);
+				printf("\n%20.I64u sinh ngau nhien la so nguyen to\n", decimal);
 				break;
 			}
-			else	printf("\n%lld sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
+			else	printf("\n%20.I64u sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
 		}
 	}
-}	
+}
 int main(){
 	printf("Thuat toan sinh ngau nhien ra mot so nguyen to!\n");
 	printf("\nEnter so K-bit, gioi han B, tham so an toan: ");
@@ -117,5 +117,3 @@ int main(){
 	sinh_so_prime();
 	return 0;
 }
-	
-	

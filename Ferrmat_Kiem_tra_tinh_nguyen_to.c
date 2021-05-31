@@ -40,20 +40,20 @@ int checking_prime(int number, int t){
 			if(a >= 2 && a <= number-2)
 			 	tmp = 0;	
 		}
-		printf("\nt = %d\ta = %lld", i , a);
+		printf("\nt = %d\ta = %I64u", i , a);
 		r = nhan_binh_phuong_co_lap(a, number-1, number);
 		if(r != 1)	return 0;
 	}
 	return 1;
 }
 void display(){
-	if(checking_prime(number, t))	 printf("\n\n=> %lld la so nguyen to\n", number);
-	else 	printf("\n%lld la hop so!", number);
+	if(checking_prime(number, t))	 printf("\n\n=> %I64u la so nguyen to\n", number);
+	else 	printf("\n%I64u la hop so!", number);
 }
 int main(){
 	printf("Thuat toan Fermat. Kiem tra tinh nguyen to cua so nguyen le number\n");
 	printf("\nEnter a odd integer, tham so an toan: ");
-	scanf("%lld %d", &number, &t);
+	scanf("%I64u %d", &number, &t);
 	display();
 	return 0;
 }

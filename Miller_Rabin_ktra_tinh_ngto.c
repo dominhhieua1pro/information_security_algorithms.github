@@ -20,7 +20,7 @@ int nhan_binh_phuong_co_lap(unsigned long long a, unsigned long long so_mu, unsi
 	if(so_mu == 0)	return y;
 	else {
 		convert_decimal_to_binary(k, &so_bit, so_mu);
-		if(k[0] == 1)	result_mod = a;	
+		if(k[0] == 1)	result_mod = a;
 		for(j = 1; j < so_bit; j++){
 			A = A*A % number;
 			if(k[j] == 1)	result_mod = (A * result_mod) % number;
@@ -32,11 +32,11 @@ void split_n(unsigned long long *r){
 	s = 0;
 	while(!(*r % 2)){
 		s++;
-		*r = *r/2;
+		*r = *r / 2;
 	}
-	printf("\ns = %lld, r = %lld voi %lld = 2^s * r\n", s, *r, number - 1);
+	printf("\ns = %I64u, r = %I64u voi %I64u = 2^s * r\n", s, *r, number - 1);
 }
-int algorithm(int number){
+int algorithm(unsigned long long number){
 	flag = 0;
 	r = number - 1;
 	if(r == 1 || r == 2) 	return 1;
@@ -47,9 +47,9 @@ int algorithm(int number){
 		while(tmp > 0){
 			a = rand();
 			if(a >= 2 && a <= number - 2)
-			 	tmp = 0;	
+			 	tmp = 0;
 		}
-		printf("\nt = %d\ta = %lld", i, a);
+		printf("\nt = %d\ta = %I64u", i, a);
 		y = nhan_binh_phuong_co_lap(a, r, number);
 		if(y != 1 && y != number - 1){
 			j = 1;
@@ -64,13 +64,13 @@ int algorithm(int number){
 	return 1;
 }
 void display(){
-	if(algorithm(number))	printf("\n\n%lld la so nguyen to\n", number);
-	else	printf("\n%lld la hop so\n", number);
+	if(algorithm(number))	printf("\n\n%I64u la so nguyen to\n", number);
+	else	printf("\n%I64u la hop so\n", number);
 }
 int main(){
 	printf("Thuat toan Miller - Rabin. Kiem tra tinh nguyen to cua so nguyen le number\n");
 	printf("\nEnter a odd integer, tham so an toan: ");
-	scanf("%lld %d", &number, &t);
+	scanf("%I64u %d", &number, &t);
 	display();
 	return 0;
 }
