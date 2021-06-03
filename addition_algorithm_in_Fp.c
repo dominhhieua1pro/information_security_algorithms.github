@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<math.h>
+#include<conio.h>
 
 int w, m, t, i, e, select;
 unsigned int a, b, p, c;
@@ -77,12 +78,11 @@ void display(){
 	for(i = t-1; i >= 0 ; i--){
 		printf("\nC[%d] = %d", i, C[i]);
 	}
-	printf("\n\ne = %d\n", e);
+	printf("\n\ne = %d", e);
 }
 int main(){
 	while(1){
 		system("cls");
-		system("color f0");
 		printf("Addition algorithm in the Fp field!\n");
 		printf("\nChon cach nhap input:\n");
 		printf("1. Integer\n");
@@ -91,7 +91,6 @@ int main(){
 		scanf("%d",&select);
 		switch(select){
 			case 1:
-			    system("color f4");
 				printf("\nNhap input tu 2 so nguyen a, b\n");
 				printf("\nEnter a, b: ");
 				scanf("%d %d", &a, &b);
@@ -101,13 +100,11 @@ int main(){
 				convert_integer_to_array(b, B, w, p);
 				multiprecision_addition();
 				addition_algorithm();
-				system("color f1");
 				display();
-				printf("\nPress any key to return.");
+				printf("\nPress any key to continue...");
 				getch();
 				break;
 			case 2:
-			    system("color f1");
 				printf("\nNhap input tu 2 mang A, B\n");
 				printf("\nEnter p, w: ");
 				scanf("%d %d", &p, &w);
@@ -120,15 +117,17 @@ int main(){
 				multiprecision_addition();
 				addition_algorithm();
 				display();
-				printf("\nPress any key to return.");
+				printf("\nPress any key to continue...");
 				getch();
 				break;
 			default:
-			    system("color f2");
 				printf("Nhap khong hop le!");
-				printf("\nPress any key to return.");
+				printf("\nPress any key to continue...");
 				getch();
 		}
 	}
 	return 0;
 }
+
+
+

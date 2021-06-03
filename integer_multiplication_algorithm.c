@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<math.h>
+#include<stdlib.h>
+#include<conio.h>
 
 int w, m, t, i, j, z, e, len_binary, u, v, r, select;
 unsigned int a, b, p;
@@ -55,17 +57,18 @@ void integer_multiplication(){
 		}
 		C[i + t] = u;
 	}
-}			
+}
 void display(){
 	printf("\nm = %d\nt = %d\n", m, t);
 	for(i = 2*t-1; i >= 0 ; i--){
 		printf("\nC[%d] = %d", i, C[i]);
 	}
-	printf("\n\ne = %d", e);
+	printf("\n\ne = %d\n", e);
 }
 int main(){
 	while(1){
 		system("cls");
+		system("color f0");
 		printf("Integer multiplication algorithm!\n");
 		printf("\nChon cach nhap input:\n");
 		printf("1. Integer\n");
@@ -74,6 +77,7 @@ int main(){
 		scanf("%d",&select);
 		switch(select){
 			case 1:
+				system("color f4");
 				printf("\nNhap input tu 2 so nguyen a, b\n");
 				printf("\nEnter a, b: ");
 				scanf("%d %d", &a, &b);
@@ -83,10 +87,11 @@ int main(){
 				convert_integer_to_array(b, B, w, p);
 				integer_multiplication();
 				display();
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 				break;
 			case 2:
+				system("color f1");
 				printf("\nNhap input tu 2 mang A, B\n");
 				printf("\nEnter p, w: ");
 				scanf("%d %d", &p, &w);
@@ -98,12 +103,13 @@ int main(){
 				input(B);
 				integer_multiplication();
 				display();
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 				break;
 			default:
+				system("color f2");
 				printf("Nhap khong hop le!");
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 		}
 	}

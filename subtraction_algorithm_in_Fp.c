@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<math.h>
+#include<conio.h>
 
 int w, m, t, i, e, select;
 unsigned int a, b , p, c;
