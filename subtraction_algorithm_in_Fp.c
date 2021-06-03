@@ -32,7 +32,7 @@ void multiprecision_subtraction(){
 			C[i] = C[i] - ((int)(C[i] / pow(2,w)) - 1)*pow(2,w);
 		}
 		else	e = 0;
-	}	
+	}
 }
 void subtraction_algorithm(){
 	convert_integer_to_array(p, P, w, p);
@@ -57,11 +57,12 @@ void display(){
 	for(i = t-1; i >= 0 ; i--){
 		printf("\nC[%d] = %d", i, C[i]);
 	}
-	printf("\n\ne = %d", e);
+	printf("\n\ne = %d\n", e);
 }
 int main(){
 	while(1){
 		system("cls");
+		system("color f0");
 		printf("Subtraction algorithm in the Fp field!\n");
 		printf("\nChon cach nhap input:\n");
 		printf("1. Integer\n");
@@ -80,7 +81,7 @@ int main(){
 				multiprecision_subtraction();
 				subtraction_algorithm();
 				display();
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 				break;
 			case 2:
@@ -96,12 +97,12 @@ int main(){
 				multiprecision_subtraction();
 				subtraction_algorithm();
 				display();
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 				break;
 			default:
 				printf("Nhap khong hop le!");
-				printf("\nPress any key to continue...");
+				printf("\nPress any key to return.");
 				getch();
 		}
 	}
