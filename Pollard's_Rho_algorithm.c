@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<math.h>
+#include <math.h>
 
-long long a, b, number, d, i, tmp;
+long long a, b, number, d, i, tmp, r;
 int checkPrime(int n){
-    for(i = 2; i < n; i++){
+    for(i = 2; i <= sqrt(n); i++){
         if(n % i == 0)
             return 0;
     }
     return 1;
 }
-int gcd(long long a, long long b) {
-    int r;
+long long gcd(long long a, long long b) {
     while (b != 0) {
         r = a % b;
         a = b;

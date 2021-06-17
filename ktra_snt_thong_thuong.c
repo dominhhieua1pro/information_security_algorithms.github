@@ -1,8 +1,8 @@
 #include<stdio.h>
-
+#include<math.h>
 int i, j, n, number;
 int checkPrime(int n){
-    for(i = 2; i < n; i++){
+    for(i = 2; i <= sqrt(n); i++){
         if(n % i == 0)
             return 0;
     }
