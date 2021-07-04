@@ -22,7 +22,7 @@ void  convert_decimal_to_binary(int k[], int *so_bit, unsigned long long so_mu )
 int nhan_binh_phuong_co_lap(unsigned long long a, unsigned long long so_mu, unsigned long long decimal){
 	result_mod = 1;
 	A = a;
-	if(so_mu == 0)	return y;
+	if(so_mu == 0)	return result_mod;
 	else {
 		convert_decimal_to_binary(k, &so_bit, so_mu);
 		if(k[0] == 1)	result_mod = a;
@@ -43,8 +43,7 @@ void split_n(unsigned long long *r){
 int miller_rabin_algorithm(unsigned long long decimal, int t){
 	r = decimal - 1;
 	if(r == 1 || r == 2) 	return 1;
-	else if(r == 0 || r == -1)  	return 0;
-	if(r == 3)	  return 0;
+	else if(r == 0 || r == -1 || r == 3)  	return 0;
 	split_n(&r);
 	for(i = 1; i <= t; i++){
 		tmp = 1;
@@ -95,7 +94,6 @@ void sinh_so_prime(){
 		for(i = 2; i <= B; i++){
 			if(isPrime[i]){
 				if((decimal % i == 0) && (decimal != i)){
-					printf("\n%20.I64u sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
 					flag1++;
 					break;
 				}
@@ -103,10 +101,9 @@ void sinh_so_prime(){
 		}
 		if(flag1 == 0){
 			if(miller_rabin_algorithm(decimal, t)){
-				printf("\n%20.I64u sinh ngau nhien la so nguyen to\n", decimal);
+				printf("\n-> %I64u sinh ngau nhien la so nguyen to.\n", decimal);
 				break;
 			}
-			else	printf("\n%20.I64u sinh ngau nhien la hop so. Thuc hien lai!\n", decimal);
 		}
 	}
 }

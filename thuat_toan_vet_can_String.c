@@ -3,21 +3,22 @@
 #define MAX 1000
 
 char T[MAX], P[MAX];
-int count, i, j, flag, len_P;
+int count_char, i, j, len_P, count_string;
 int algorithm(){
 	len_P = strlen(P) - 1;
-	flag = 0;
+	count_string = 0;
     for(i = 0; i < strlen(T); i++) {
-        count = 0;
+        count_char = 0;
         for(j = 0; j < len_P; j++){
-            if (T[i + j] == P[j])	count++;
+            if (T[i + j] == P[j])	count_char++;
         }
-        if (count == len_P) {
-            printf("\nString P bat dau tu vi tri thu %d trong String T", i);
-            flag++;
+        if (count_char == len_P) {
+        	count_string++;
+            printf("\nString P xuat hien lan thu %d tai vi tri [%d,%d] trong String T", count_string, i, i + len_P - 1);
         }
 	}
-	if(!flag) 	printf("\nString P khong nam trong String T");
+	if(!count_string) 	printf("\nString P khong nam trong String T");
+	else 	printf("\n\n-> P xuat hien %d lan trong T\n", count_string);
 }
 int main(){
 	printf("Thuat toan vet can - doi sanh mau!\n");

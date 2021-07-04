@@ -4,7 +4,7 @@
 #define MAX 1000
 
 char T[MAX], P[MAX];
-int count, i, j, flag, tmp, k, len_F, find_string, len_P, F[MAX] = {-1,0};
+int count_char, count_string, i, j, flag, tmp, k, len_F, find_string, len_P, F[MAX] = {-1,0}, xxx;
 void failure_function(char P[]){
 	for(j = 2; j < len_P; j++){
 		flag = 0;
@@ -30,19 +30,24 @@ void failure_function(char P[]){
        		F[j] = 0;
     	}	
 	}
+	printf("\nFailure function table: \n J\t");
+	for(i = 0; i < len_P; i++)
+		printf("%3d ", i);
+	printf("\n F(J)\t");
+	for(i = 0; i < len_P; i++)
+		printf("%3d ", F[i]);
 }
 void algorithm(){
 	len_P = strlen(P) - 1;
 	failure_function(P);
-	flag = 0;
 	i = j = 0;
-    count = 0;
-    while(i < (strlen(T) - len_P + 1)){
+    count_char = count_string = 0;
+    while(i < strlen(T)){
         if(T[i + j] == P[j]){
-			count++;
-			if (count == (len_P)) {
-            	printf("\nString P bat dau tu vi tri thu %d trong String T", i);
-            	exit(0);
+			count_char++;
+			if (count_char == (len_P)) {
+				count_string++;
+            	printf("\n\nString P xuat hien lan thu %d tai vi tri [%d,%d] trong String T", count_string, i, i + len_P - 1);
             }
             j++;
         }
@@ -50,10 +55,11 @@ void algorithm(){
             i = i + j - F[j];
             if(F[j] == -1)	  j = 0;
             else 	j = F[j];
-            count = 0;
+            count_char = 0;
         }
     }
-    printf("\nString P khong nam trong String T");
+    if(!count_string) 	printf("\nString P khong nam trong String T");
+    else 	printf("\n\n-> P xuat hien %d lan trong T\n", count_string);
 }
 int main(){
 	printf("Thuat toan Knuth_Morris_Pratt - doi sanh mau!\n");

@@ -4,7 +4,7 @@
 #define MAX 1000
 
 char P[MAX], T[MAX], T_i;
-int i, j, L[MAX], count, len_P;
+int i, j, L[MAX], count_char, len_P, count_string;
 void build_last_occurrence(char P[]){
 	for(i = 0; i <= 122; i++){
 		L[i] = -1;
@@ -20,13 +20,14 @@ void algorithm(){
     len_P = strlen(P) - 1;
 	build_last_occurrence(P);
 	i = j = len_P - 1;
+	count_string = 0;
 	while(i < strlen(T)){
-		count = 0;
+		count_char = 0;
 		while(T[i] == P[j]){
-			count++;
-			if(count == len_P){
-				printf("\nString P bat dau tu vi tri thu %d trong String T\n", i);
-				exit(0);
+			count_char++;
+			if(count_char == len_P){
+				count_string++;
+				printf("\nString P xuat hien lan thu %d tai vi tri [%d,%d] trong String T", count_string, i, i + len_P - 1);
 			}
 			i--;
 			j--;
@@ -34,7 +35,8 @@ void algorithm(){
 		i = i + len_P - min(j, T[i]);
 		j = len_P - 1;
 	}
-	printf("\nString P khong nam trong String T\n");
+	if(!count_string) 	printf("\nString P khong nam trong String T");
+	else 	printf("\n\n-> P xuat hien %d lan trong T\n", count_string);
 }
 int main(){
 	printf("Thuat toan Boyer_Moore - doi sanh mau!\n");
