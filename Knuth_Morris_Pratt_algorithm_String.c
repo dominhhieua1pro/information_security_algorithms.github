@@ -4,7 +4,8 @@
 #define MAX 1000
 
 char T[MAX], P[MAX];
-int count_char, count_string, i, j, flag, tmp, k, len_F, find_string, len_P, F[MAX] = {-1,0}, xxx;
+int count_char, count_string, i, j, flag, tmp, k, len_F, find_string, len_P, F[MAX] = {-1,0};
+
 void failure_function(char P[]){
 	for(j = 2; j < len_P; j++){
 		flag = 0;
@@ -37,7 +38,7 @@ void failure_function(char P[]){
 	for(i = 0; i < len_P; i++)
 		printf("%3d ", F[i]);
 }
-void algorithm(){
+void algorithm(char T[], char P[]){
 	len_P = strlen(P) - 1;
 	failure_function(P);
 	i = j = 0;
@@ -67,6 +68,6 @@ int main(){
     fgets(T, sizeof(T), stdin); 
     printf("\nEnter String P: ");
    	fgets(P, sizeof(P), stdin);
-    algorithm();
+    algorithm(T,P);
     return 0;
 }
