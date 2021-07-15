@@ -4,13 +4,13 @@
 #define MAX 1000
 
 char T[MAX], P[MAX];
-int count_char, count_string, i, j, flag, tmp, k, len_F, find_string, len_P, F[MAX] = {-1,0};
+int count_char, count_string, i, j, flag, tmp, k, len_F, find_substring, len_P, F[MAX] = {-1,0};
 
 void failure_function(char P[]){
 	for(j = 2; j < len_P; j++){
 		flag = 0;
-		for(find_string = j - 2; find_string >= 0; find_string--){
-			tmp = find_string;
+		for(find_substring = j - 2; find_substring >= 0; find_substring--){
+			tmp = find_substring;
         	len_F = 0;
         	k = j - 1;
         	while(P[tmp] == P[k]){
@@ -42,9 +42,10 @@ void algorithm(char T[], char P[]){
 	len_P = strlen(P) - 1;
 	failure_function(P);
 	i = j = 0;
-    count_char = count_string = 0;
-    while(i < strlen(T)){
-        if(T[i + j] == P[j]){
+	count_string = 0;
+    while(i < strlen(T) - 1){
+    	count_char = 0;
+        while(T[i + j] == P[j]){
 			count_char++;
 			if (count_char == (len_P)) {
 				count_string++;
@@ -52,12 +53,9 @@ void algorithm(char T[], char P[]){
             }
             j++;
         }
-        else{
-            i = i + j - F[j];
-            if(F[j] == -1)	  j = 0;
-            else 	j = F[j];
-            count_char = 0;
-        }
+        i = i + j - F[j];
+        if(F[j] == -1)	  j = 0;
+        else 	j = F[j];
     }
     if(!count_string) 	printf("\nString P khong nam trong String T");
     else 	printf("\n\n-> P xuat hien %d lan trong T\n", count_string);

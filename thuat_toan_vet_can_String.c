@@ -4,7 +4,7 @@
 
 char T[MAX], P[MAX];
 int count_char, i, j, len_P, count_string;
-int algorithm(){
+void algorithm(){
 	len_P = strlen(P) - 1;
 	count_string = 0;
     for(i = 0; i < strlen(T); i++) {
@@ -17,7 +17,7 @@ int algorithm(){
             printf("\nString P xuat hien lan thu %d tai vi tri [%d,%d] trong String T", count_string, i, i + len_P - 1);
         }
 	}
-	if(!count_string) 	printf("\nString P khong nam trong String T");
+	if(!count_string) 	printf("\nString P khong nam trong String T\n");
 	else 	printf("\n\n-> P xuat hien %d lan trong T\n", count_string);
 }
 int main(){
