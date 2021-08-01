@@ -1,33 +1,37 @@
-#include<stdio.h>
+#include <stdio.h>
 
 long long p, a, u, v, x1, x2, r, q, x;
-
-int inverse(){
-	u = a % p;
+// handling exception neu de bai cho snt p va a thuoc [1,p-1]
+long long inverse(long long a, long long p)
+{
+	u = a;
 	v = p;
 	x1 = 1;
 	x2 = 0;
-	while( u != 1){
-		q = (int)(v / u);
+	while (u != 1)
+	{
+		q = (long long)(v / u);
 		r = v % u;
-		x = x2 - q*x1;
+		x = x2 - q * x1;
 		v = u;
 		u = r;
 		x2 = x1;
 		x1 = x;
 	}
-	return x1;
+	if (x1 < 0)
+		return x1 + p;
+	else
+		return x1;
 }
-void display(){
-	printf("\nd = %I64d", x1);
-	printf("\n%I64d^-1 = %I64d (mod %I64d)", a, x1, p);
-	printf("\n%I64d.%I64d = 1 (mod %I64d)", a, x1, p);
+void display()
+{
+	printf("\n%lld^-1 = %lld (mod %lld)", a, inverse(a, p), p);
 }
-int main(){
-	printf("Phep tinh nghich dao a^-1 = d (mod p) hay a.d = 1 (mod p)\n");
+int main()
+{
+	printf("Phep tinh nghich dao a^-1 (mod p)\n");
 	printf("\nEnter a, p: ");
-	scanf("%I64d %I64d", &a, &p);
-	inverse();
+	scanf("%lld %lld", &a, &p);
 	display();
 	return 0;
 }

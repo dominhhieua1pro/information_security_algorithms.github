@@ -1,26 +1,34 @@
-#include<stdio.h>
-#include<math.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
 #define MAX 1000000
 
-void sangEratosthenes(int number){
+void sangEratosthenes(int number)
+{
 	bool isPrime[MAX];
-	int i,j;
-	for(i = 2; i <= number; i++){
+	int i, j;
+	for (i = 2; i <= number; i++)
+	{
 		isPrime[i] = true;
-		}
-	for(i = 2; i <= sqrt(number) ; i++){
-		if(isPrime[i]){
-			for(j = i*i ; j <= number; j += i){
+	}
+	for (i = 2; i <= sqrt(number); i++)
+	{
+		if (isPrime[i])
+		{
+			for (j = i * i; j <= number; j += i)
+			{
 				isPrime[j] = false;
-				}
 			}
 		}
-	for(i = 2; i <= number; i++){
-		if(isPrime[i]) printf("%d ", i);
-		}
+	}
+	for (i = 2; i <= number; i++)
+	{
+		if (isPrime[i])
+			printf("%d ", i);
+	}
 }
-int main(){
+int main()
+{
 	int number;
 	printf("Sieve of Eratosthenes!\n\n");
 	printf("Enter a number: ");
@@ -28,4 +36,3 @@ int main(){
 	sangEratosthenes(number);
 	return 0;
 }
-	
